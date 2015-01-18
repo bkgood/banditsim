@@ -52,3 +52,6 @@ class LWPRSolver (BanditSolver):
         self.lwpr.update(self.x, y)
         self.required_n_remaining -= 1
         return
+
+    def __str__(self):
+        return "LWPR solver, predicting after n=%d" % self.required_n

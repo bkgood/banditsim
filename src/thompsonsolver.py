@@ -23,3 +23,6 @@ class ThompsonSolver (BanditSolver):
             self.successes[arm] += 1
         else:
             self.failures[arm] += 1
+
+    def __str__(self):
+        return "Thompson Solver"

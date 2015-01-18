@@ -25,3 +25,5 @@ class EpsilonGreedySolver (BanditSolver):
         self.successes[arm] += 1 if success else 0
         self.trials[arm] += 1
 
+    def __str__(self):
+        return "Epsilon Greedy Solver, e=%f" % self.epsilon
