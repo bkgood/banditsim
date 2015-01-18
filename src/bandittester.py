@@ -44,9 +44,9 @@ class BanditTester (object):
 
 if __name__ == '__main__':
     rates = np.array([0.1, 0.3, 0.8])
-    tester = BanditTester(rates, 300)
-    #tester.with_solver(ThompsonSolver)
-    #tester.with_solver(EpsilonGreedySolver, epsilon=0.8)
-    tester.with_solver(LWPRSolver, required_n=200)
+    tester = BanditTester(rates, 30000)
+    tester.with_solver(ThompsonSolver)
+    tester.with_solver(EpsilonGreedySolver, epsilon=0.8)
+    tester.with_solver(LWPRSolver, required_n=50)
     print "running test"
     tester.test()
