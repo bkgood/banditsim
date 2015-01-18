@@ -6,4 +6,4 @@ comparative simulations including the original (to my knowledge) bandit
 solution within (see src/lwprsolver.py).
 
 GPLv2 (only v2, not eg. v3) for now; might relicense if I feel like it or
-demand arises.
+demand arises. All files copyright 2015 William Good unless otherwise noted.
