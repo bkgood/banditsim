@@ -27,17 +27,14 @@ from banditsolver import BanditSolver
 class LWPRSolver (BanditSolver):
     def __init__(self, arms, required_n):
         self.lwpr = lwpr.LWPR(1, arms)
-        # erm, shouldn't this be a constant (as long as we are without
-        # context)?
-        self.x = np.zeros(arms) # plus category data
+        self.x = np.eye(1) # plus category data, later
         self.y = np.zeros(arms)
         self.arms = arms
         # should try this per-input
         self.required_n = required_n
 
     def predict(self, *args):
-        x = np.eye(1)
-        (y, conf) = self.lwpr.predict_conf(x)
+        (y, conf) = self.lwpr.predict_conf(self.x)
         #print y, conf
         #print y + np.abs(y - conf)
         if self.required_n > 0:
@@ -50,9 +47,8 @@ class LWPRSolver (BanditSolver):
         #return np.argmax(y + (1.0 - conf))
 
     def train(self, arm, success, category_values):
-        x = np.eye(1)
         y = np.zeros(self.arms)
         y[arm] = 1 if success else 0
-        self.lwpr.update(x, y)
+        self.lwpr.update(self.x, y)
         self.required_n -= 1
         return
