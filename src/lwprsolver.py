@@ -31,13 +31,13 @@ class LWPRSolver (BanditSolver):
         self.y = np.zeros(arms)
         self.arms = arms
         # should try this per-input
-        self.required_n = required_n
+        self.required_n_remaining = self.required_n = required_n
 
     def predict(self, *args):
         (y, conf) = self.lwpr.predict_conf(self.x)
         #print y, conf
         #print y + np.abs(y - conf)
-        if self.required_n > 0:
+        if self.required_n_remaining > 0:
             return np.random.random_integers(0, self.arms - 1)
         #print y, conf
         return np.argmax(y + np.abs(y - conf))
@@ -50,5 +50,5 @@ class LWPRSolver (BanditSolver):
         y = np.zeros(self.arms)
         y[arm] = 1 if success else 0
         self.lwpr.update(self.x, y)
-        self.required_n -= 1
+        self.required_n_remaining -= 1
         return
