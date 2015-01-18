@@ -37,7 +37,8 @@ class BanditTester (object):
 
                 if arm != best_arm:
                     regret[str(s)] += rates[best_arm] - rates[arm]
-        print regret
+        for solver in self.solvers:
+            print "%s: %f" % (solver, regret[str(solver)])
         print "done"
         #print ts.successes / (ts.successes + ts.failures)
 
