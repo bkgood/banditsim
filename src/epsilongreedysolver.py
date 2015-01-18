@@ -1,6 +1,8 @@
 import numpy as np
 from banditsolver import BanditSolver
 
+# Reference: http://www.cs.mcgill.ca/~vkules/bandits.pdf
+
 class EpsilonGreedySolver (BanditSolver):
     def __init__(self, arms, epsilon=0.8):
         self.arms = arms
