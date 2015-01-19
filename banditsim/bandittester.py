@@ -17,7 +17,9 @@ class BanditTester (object):
         self.categories[name] = options
 
     def with_solver(self, solver_cls, *args, **kwargs):
-        self.solvers.append(solver_cls(len(self.arm_success_rates), *args, **kwargs))
+        solver = solver_cls(len(self.arm_success_rates), *args, **kwargs)
+        self.solvers.append(solver)
+        return solver
 
     def test(self):
         regret = {}
