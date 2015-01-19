@@ -43,8 +43,6 @@ class BanditTester (object):
                             - self.arm_success_rates[arm]
                     )
 
-        for solver in self.solvers:
-            print "%s: %f" % (solver, regret[str(solver)])
-        print "done"
         #print ts.successes / (ts.successes + ts.failures)
+        return regret
 
